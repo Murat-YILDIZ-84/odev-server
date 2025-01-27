@@ -28,12 +28,19 @@ app.get("/test", (req, res) => {
 
 app.get("/tables", async (req, res) => {
     try {
-        const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
+        //const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
 
         //res.json({msg: "OK", data: rows});
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        res.write("rows");
+        //res.writeHead(200, {'Content-Type': 'application/json'});
+        //res.write("rows");
+        //res.end();
+
+        res.json({
+            "response": "Hello World-11",
+            "messages": [{ "code": "0", "message": "OK" }]
+        });
         res.end();
+
     } catch (error) {
         res.json({msg: error.msg});
     }
