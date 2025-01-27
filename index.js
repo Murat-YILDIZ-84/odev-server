@@ -36,10 +36,9 @@ app.get("/tables", async (req, res) => {
         //res.end();
 
         res.json({
-            "response": "Hello World-11",
+            "response": "Hello World-12",
             "messages": [{ "code": "0", "message": "OK" }]
         });
-        res.end();
 
     } catch (error) {
         res.json({msg: error.msg});
