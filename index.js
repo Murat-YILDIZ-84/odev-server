@@ -34,6 +34,7 @@ app.get("/tables", async (req, res) => {
     } catch (error) {
         res.json({msg: error.msg});
     }
+    res.send();
 })
 
 app.post("/token", async (req, res) => {
