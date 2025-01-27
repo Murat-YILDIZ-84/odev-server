@@ -32,12 +32,12 @@ app.get("/tables", async (req, res) => {
 
         //res.json({msg: "OK", data: rows});
         res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(rows);
+        res.end();
     } catch (error) {
         res.json({msg: error.msg});
     }
     //res.send();
-    res.write(txt);
-    res.end();
 })
 
 app.post("/token", async (req, res) => {
