@@ -28,22 +28,12 @@ app.get("/test", (req, res) => {
 
 app.get("/tables", async (req, res) => {
     try {
-        //const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
+        const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
 
-        //res.json({msg: "OK", data: rows});
-        //res.writeHead(200, {'Content-Type': 'application/json'});
-        //res.write("rows");
-        //res.end();
-
-        res.json({
-            "response": "Hello World-12",
-            "messages": [{ "code": "0", "message": "OK" }]
-        });
-
+        res.json({msg: "OK", data: rows});
     } catch (error) {
         res.json({msg: error.msg});
     }
-    //res.send();
 })
 
 app.post("/token", async (req, res) => {
