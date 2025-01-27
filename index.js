@@ -26,7 +26,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World");
+    res.send("Hello World-14");
 })
 
 app.get("/tables", async (req, res) => {
@@ -34,9 +34,6 @@ app.get("/tables", async (req, res) => {
         const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
 
         res.json({msg: "OK", data: rows});
-
-        //const allItems = await pool.query('SELECT * FROM DebitTable');
-        //res.json({ allItems });
     } catch (error) {
         res.json({msg: error.msg});
     }
