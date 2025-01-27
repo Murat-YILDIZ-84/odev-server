@@ -30,11 +30,14 @@ app.get("/tables", async (req, res) => {
     try {
         const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
 
-        res.json({msg: "OK", data: rows});
+        //res.json({msg: "OK", data: rows});
+        res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
         res.json({msg: error.msg});
     }
-    res.send();
+    //res.send();
+    res.write(txt);
+    res.end();
 })
 
 app.post("/token", async (req, res) => {
