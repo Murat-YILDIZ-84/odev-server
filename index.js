@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const { Pool } = require('pg');
 const pool = new Pool({
-    connectionString: process.env.DBConnLink + "?sslmode=require",
+    connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 
 const username = "apitest";
