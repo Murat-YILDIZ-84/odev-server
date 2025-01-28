@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://example.com');
+    res.setHeader('Access-Control-Allow-Origin', 'http://odev-server.onrender.com/test');
     next();
 });
 
