@@ -15,6 +15,7 @@ var corsOptions = {
     "origin": "http://odev-server.onrender.com",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
+    "credentials": true,
     "optionsSuccessStatus": 204
 }
 
