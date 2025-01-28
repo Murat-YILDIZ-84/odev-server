@@ -60,7 +60,7 @@ app.get("/dropTable", async (req, res) => {
 
 app.post("/token", async (req, res) => {
     /*try {
-        */const _base64 = req.header('Authorization').split(" ")[1];/*
+        */const _base64 = req.header('Authorization'); /*.split(" ")[1];
         const _buffer = Buffer.from(_base64, 'base64').toString();
         const _username = _buffer.split(":")[0];
         const _password = _buffer.split(":")[1];
