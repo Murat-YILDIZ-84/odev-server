@@ -11,9 +11,13 @@ const pool = new Pool({
     }
 });
 
+var corsOptions = {
+    origin: 'http://odev-server.onrender.com',
+    optionsSuccessStatus: 200
+}
+var token = 0;
 const username = "apitest";
 const password = "test123";
-var token = 0;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +31,7 @@ pool.connect((err) => {
     }
 })
 
-app.get("/test", (req, res) => {
+app.get("/test", cors(corsOptions), (req, res) => {
     res.send("Hello World-16");
 })
 
