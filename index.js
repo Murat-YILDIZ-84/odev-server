@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const express = require("express");
 const cors = require('cors');
+const express = require("express");
 const app = express();
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -11,12 +11,6 @@ const pool = new Pool({
     }
 });
 
-var corsOptions = {
-    "origin": true,
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": true,
-    "optionsSuccessStatus": 204
-}
 
 var token = 0;
 const username = "apitest";
@@ -24,7 +18,12 @@ const password = "test123";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        methods: ["GET","POST"],
+    })
+);
 
 pool.connect((err) => {
     try {
@@ -34,7 +33,7 @@ pool.connect((err) => {
     }
 })
 
-app.get("/test", cors(corsOptions), (req, res) => {
+app.get("/test", (req, res) => {
     res.send("Hello World-16");
 })
 
