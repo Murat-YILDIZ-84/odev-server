@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const { createProxyMiddleware } = require("http-proxy-middleware");
-//const cors = require('cors');
+const cors = require('cors');
+
 const express = require("express");
 const app = express();
 const { Pool } = require('pg');
@@ -19,26 +20,18 @@ const password = "test123";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-//app.use(cors());
-//app.use(cors({ origin: true }));
-//app.use(cors({ credentials: true }))
-app.use(
-    "/api",
-    createProxyMiddleware({
-      // I have a different port and Visual Studio might randomly change it
-      // Fix: edit running configuration 
-      // https://stackoverflow.com/questions/70332897/how-to-change-default-port-no-of-my-net-core-6-api
+const corsOptions = {
+    //   origin: ["http://localhost:3000"],
+    origin: true,
+    credentials: true,
+  };
+app.use(cors(corsOptions));
 
-      // Notice: no /api at the end of URL, it will be added.
-      // more details at: https://www.npmjs.com/package/http-proxy-middleware
-      target: "http://localhost:3000",
-      changeOrigin: true,
-
-      // Im using .net core 6 starting api template
-      // which is running with a self-signed ssl cert with https enabled
-      secure: false 
-    })
-  );
+const proxyMiddleware = createProxyMiddleware("/", {
+    target: "http://odev-server.onrender.com",
+    changeOrigin: true,
+  });
+app.use(proxyMiddleware);
 
 pool.connect((err) => {
     try {
