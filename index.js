@@ -27,7 +27,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const proxyMiddleware = createProxyMiddleware("/", {
-    target: "http://localhost:3000",
     changeOrigin: true,
   });
 app.use(proxyMiddleware);
