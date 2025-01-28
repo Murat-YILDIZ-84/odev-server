@@ -12,7 +12,7 @@ const pool = new Pool({
 });
 
 var corsOptions = {
-    "origin": "http://odev-server.onrender.com",
+    "origin": "http://localhost:3000",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "credentials": true,
