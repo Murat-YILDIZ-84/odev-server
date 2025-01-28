@@ -12,9 +12,12 @@ const pool = new Pool({
 });
 
 var corsOptions = {
-    origin: 'http://odev-server.onrender.com',
-    optionsSuccessStatus: 200
+    "origin": "http://odev-server.onrender.com",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
 }
+
 var token = 0;
 const username = "apitest";
 const password = "test123";
