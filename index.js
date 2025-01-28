@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     res.header("Access-Control-Allow-credentials", true);
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PATCH");
     next();
 });
 
@@ -35,7 +35,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-20-3");
+    res.send("Hello World-20-4");
 })
 
 app.get("/tables", async (req, res) => {
