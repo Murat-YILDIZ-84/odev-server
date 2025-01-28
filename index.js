@@ -9,6 +9,8 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
+const cors = require('cors')
+app.use(cors())
 
 const username = "apitest";
 const password = "test123";
@@ -26,7 +28,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-15");
+    res.send("Hello World-16");
 })
 
 app.get("/tables", async (req, res) => {
