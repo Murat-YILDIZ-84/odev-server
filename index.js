@@ -35,7 +35,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-20-5");
+    res.send("Hello World-20-6");
 })
 
 app.get("/tables", async (req, res) => {
@@ -73,6 +73,12 @@ app.post("/token", async (req, res) => {
             res.json(
             {
                 "response": { "token": token },
+                "messages": [{ "code": "0", "message": "OK" }]
+            });
+        } else {
+            res.json(
+            {
+                "response": { },
                 "messages": [{ "code": "0", "message": "OK" }]
             });
         }
