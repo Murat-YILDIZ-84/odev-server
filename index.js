@@ -12,7 +12,7 @@ const pool = new Pool({
 });
 
 var corsOptions = {
-    "origin": "*",
+    "origin": false,
     "optionsSuccessStatus": 204
 }
 
