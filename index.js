@@ -1,8 +1,5 @@
 require('dotenv').config();
 
-const { createProxyMiddleware } = require("http-proxy-middleware");
-const cors = require('cors');
-
 const express = require("express");
 const app = express();
 const { Pool } = require('pg');
@@ -13,23 +10,12 @@ const pool = new Pool({
     }
 });
 
-
 var token = 0;
 const username = "apitest";
 const password = "test123";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const corsOptions = {
-    origin: true,
-    credentials: true,
-  };
-app.use(cors(corsOptions));
-
-const proxyMiddleware = createProxyMiddleware("/", {
-    changeOrigin: true,
-  });
-app.use(proxyMiddleware);
 
 pool.connect((err) => {
     try {
@@ -40,7 +26,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-17");
+    res.send("Hello World-18");
 })
 
 app.get("/tables", async (req, res) => {
