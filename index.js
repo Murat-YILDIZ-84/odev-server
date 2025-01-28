@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -9,8 +10,6 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
-const cors = require('cors')
-app.use(cors())
 
 const username = "apitest";
 const password = "test123";
@@ -18,6 +17,7 @@ var token = 0;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 pool.connect((err) => {
     try {
