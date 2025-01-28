@@ -72,7 +72,7 @@ app.post("/token", async (req, res) => {
             token = d.getTime();
             res.json(
             {
-                "response": { "token": req },
+                "response": { "token": req.headers },
                 "messages": [{ "code": "0", "message": "OK" }]
             });
         /*} else {
