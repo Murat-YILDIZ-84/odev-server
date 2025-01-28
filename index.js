@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -14,8 +15,15 @@ var token = 0;
 const username = "apitest";
 const password = "test123";
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
 
 pool.connect((err) => {
     try {
@@ -24,11 +32,6 @@ pool.connect((err) => {
         console.log("Database Connection : " + err.message);
     }
 })
-
-app.get('/cors', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled 🎈" })
-});
 
 app.get("/test", (req, res) => {
     res.send("Hello World-18");
