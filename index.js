@@ -18,16 +18,12 @@ const password = "test123";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-    cors({
-        origin: "http://odev-server.onrender.com",
-        methods: ["GET","POST"],
-    })
-);
+app.use(cors());
+
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://example.com');
     next();
-   });
+});
 
 pool.connect((err) => {
     try {
@@ -38,7 +34,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-16");
+    res.send("Hello World-17");
 })
 
 app.get("/tables", async (req, res) => {
