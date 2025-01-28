@@ -21,14 +21,13 @@ const password = "test123";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
-    //   origin: ["http://localhost:3000"],
     origin: true,
     credentials: true,
   };
 app.use(cors(corsOptions));
 
 const proxyMiddleware = createProxyMiddleware("/", {
-    target: "http://odev-server.onrender.com",
+    target: "http://localhost:3000",
     changeOrigin: true,
   });
 app.use(proxyMiddleware);
