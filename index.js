@@ -12,10 +12,7 @@ const pool = new Pool({
 });
 
 var corsOptions = {
-    "origin": "http://localhost:3000",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "credentials": true,
+    "origin": "*",
     "optionsSuccessStatus": 204
 }
 
@@ -25,22 +22,7 @@ const password = "test123";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-app.UseCors(options =>
-    {
-        options.AllowAnyOrigin();
-        options.AllowAnyHeader();
-        options.AllowAnyMethod();
-    });
-    app.UseHttpsRedirection();
-    app.UseAuthentication();
-    app.UseAuthorization();
-    app.MapControllers();
+app.use(cors(corsOptions));
 
 pool.connect((err) => {
     try {
