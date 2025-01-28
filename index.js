@@ -72,7 +72,7 @@ app.post("/token", async (req, res) => {
             token = d.getTime();
             res.json(
             {
-                "response": { "token": "_base64" },
+                "response": { "token": req.body },
                 "messages": [{ "code": "0", "message": "OK" }]
             });
         /*} else {
