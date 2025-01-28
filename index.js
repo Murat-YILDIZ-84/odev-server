@@ -20,12 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use((req, res, next) => {
-    //res.setHeader('Access-Control-Allow-Origin', 'http://odev-server.onrender.com/test');
-    res.setHeader('HTTP/1.1 204 No Content');
-    res.setHeader('Access-Control-Allow-Origin','http://localhost:3000/');
-    res.setHeader('Access-Control-Allow-Methods','POST, GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers','Content-Type');
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
