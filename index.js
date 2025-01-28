@@ -13,6 +13,8 @@ const pool = new Pool({
 
 var corsOptions = {
     "origin": true,
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
     "optionsSuccessStatus": 204
 }
 
