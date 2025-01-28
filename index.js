@@ -19,7 +19,8 @@ const password = "test123";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //app.use(cors());
-app.use(cors({ origin: true }));
+//app.use(cors({ origin: true }));
+app.use(cors({ credentials: true }))
 
 pool.connect((err) => {
     try {
