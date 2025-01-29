@@ -69,7 +69,7 @@ app.post("/token", async (req, res) => {
             _password == password){*/
             const d = new Date();
 
-            const auth=req.config.headers;
+            const auth=req.config;
             
             token = d.getTime();
             res.json(
