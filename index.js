@@ -58,9 +58,9 @@ app.get("/dropTable", async (req, res) => {
     }
 })
 
-app.post("/token", async (req, res) => {
+app.get("/token", async (req, res) => {
     /*try {
-        const _base64 = req.header('Authorization'); /*.split(" ")[1];
+        */const _base64 = req.header('Authorization'); /*.split(" ")[1];
         const _buffer = Buffer.from(_base64, 'base64').toString();
         const _username = _buffer.split(":")[0];
         const _password = _buffer.split(":")[1];
@@ -69,12 +69,10 @@ app.post("/token", async (req, res) => {
             _password == password){*/
             const d = new Date();
 
-            const auth=req.config;
-            
             token = d.getTime();
             res.json(
             {
-                "response": auth,
+                "response": _base64,
                 "messages": [{ "code": "0", "message": "OK" }]
             });
         /*} else {
