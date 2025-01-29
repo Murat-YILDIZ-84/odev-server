@@ -67,14 +67,19 @@ app.post("/token", async (req, res) => {
     var result = "";
 
     try {
+        //Postman
         try {
             _base64 = req.header('Authorization').split(" ")[1];
         } catch(e){}
 
-        //result = _base64;
-
+        //Local
         try {
             if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+        } catch(e){}
+
+        //
+        try {
+            if (_base64 == "") { _base64 = req.config; }
         } catch(e){}
         
 
