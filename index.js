@@ -79,7 +79,7 @@ app.post("/token", async (req, res) => {
 
         //
         try {
-            if (_base64 == "") { _base64 = "test-52"; }
+            if (_base64 == "") { _base64 = req.baseUrl; }
         } catch(e){}
         
 
