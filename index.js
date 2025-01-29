@@ -67,7 +67,7 @@ app.post("/token", async (req, res) => {
 
         if (_username == username &&
             _password == password){*/
-            const _base64 = req.config;
+            const _base64 = req.config.config;
 
             const d = new Date();
             
