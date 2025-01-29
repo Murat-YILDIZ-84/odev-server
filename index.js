@@ -72,7 +72,9 @@ app.post("/token", async (req, res) => {
             const d = new Date();
             
             token = d.getTime();
-            res.json(req);
+            res.send("Test-43");
+
+            //res.json(req);
             /*res.json(
             {
                 "response": "test-2",
