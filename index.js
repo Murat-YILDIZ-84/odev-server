@@ -60,12 +60,12 @@ app.get("/dropTable", async (req, res) => {
 
 app.post("/token", async (req, res) => {
 
-    const authheader = req.headers;
+    res.send(req);
 
     //console.log(req.headers.authorization);
     //console.log(req.headers.origin);
 
-    var _base64 = "";
+    /*var _base64 = "";
     var result = "";
 
     try {
@@ -106,13 +106,13 @@ app.post("/token", async (req, res) => {
             }
         }
 
-        */res.writeHead(200, {'Content-Type': 'application/json'});
+        res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
         res.writeHead(500, 'Error has occured');
     } finally {
         res.write(result);
         res.end();
-    }
+    }*/
 })
 
 app.post("/upsert", async (req, res) => {
