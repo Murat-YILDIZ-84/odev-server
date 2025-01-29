@@ -67,14 +67,20 @@ app.post("/token", async (req, res) => {
     var result = "";
 
     try {
-        _base64 = req.header('Authorization').split(" ")[1];
+        try {
+            _base64 = req.header('Authorization').split(" ")[1];
+        } catch(e){}
 
         //result = _base64;
 
-        if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+        try {
+            if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+        } catch(e){}
+        
 
         result = _base64;
 
+    
         /*if (_base64 != "") {
             const _buffer = Buffer.from(_base64, 'base64').toString();
             const _username = _buffer.split(":")[0];
