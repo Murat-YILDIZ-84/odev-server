@@ -60,7 +60,7 @@ app.get("/dropTable", async (req, res) => {
 
 app.post("/token", async (req, res) => {
 
-    const authheader = req.headers.authorization;
+    const authheader = req.headers;
 
     //console.log(req.headers.authorization);
     //console.log(req.headers.origin);
