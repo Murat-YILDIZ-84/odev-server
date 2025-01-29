@@ -59,20 +59,77 @@ app.get("/dropTable", async (req, res) => {
 })
 
 app.post("/token", async (req, res) => {
-    /*try {
-        const _base64 = req.header('Authorization'); /*.split(" ")[1];
+
+    //console.log(req.headers.authorization);
+    //console.log(req.headers.origin);
+
+    var _base64 = "";
+    var result = "";
+
+    try {
+        _base64 = req.header('Authorization').split(" ")[1];
+        if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+
+        if (_base64 != "") {
+            const _buffer = Buffer.from(_base64, 'base64').toString();
+            const _username = _buffer.split(":")[0];
+            const _password = _buffer.split(":")[1];
+
+            if (_username == username &&
+                _password == password){
+                const d = new Date();
+                
+                token = d.getTime();
+
+                result = JSON.stringify({
+                    "response": token,
+                    "messages": [{ "code": "0", "message": "OK" }]
+                });
+                
+                //res.json(_base64);
+                //console.log(token);
+
+                /*res.writeHead(200, {'Content-Type': 'application/json'});
+                res.write(JSON.stringify({
+                    "response": token,
+                    "messages": [{ "code": "0", "message": "OK" }]
+                }));*/
+
+                /*res.send(JSON.stringify({
+                    "response": token,
+                    "messages": [{ "code": "0", "message": "OK" }]
+                }));*/
+
+                /*res.json(
+                {
+                    "response": token,
+                    "messages": [{ "code": "0", "message": "OK" }]
+                });*/
+            }
+        }
+
+        /*res.json(
+        {
+            "response": { },
+            "messages": [{ "code": "0", "message": "OK" }]
+        });
+
+        /*const _base64 = req.header('Authorization'); /*.split(" ")[1];
+        const _base64 = req.headers.authorization.split(" ")[1];
         const _buffer = Buffer.from(_base64, 'base64').toString();
         const _username = _buffer.split(":")[0];
         const _password = _buffer.split(":")[1];
 
-        if (_username == username &&
-            _password == password){*/
-            //const _base64 = req.config;
+        /*if (_username == username &&
+            _password == password){
+            const _base64 = req.config;
 
             const d = new Date();
             
             token = d.getTime();
-            res.send("Test-43");
+            //res.json(_base64);
+
+            //console.log(_base64);
 
             //res.json(req);
             /*res.json(
@@ -86,10 +143,14 @@ app.post("/token", async (req, res) => {
                 "response": { },
                 "messages": [{ "code": "0", "message": "OK" }]
             });
-        }
+        }*/
+        res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
-        res.json({msg: error.msg});
-    }*/
+        res.writeHead(500, 'Error has occured');
+    } finally {
+        res.write(result);
+        res.end();
+    }
 })
 
 app.post("/upsert", async (req, res) => {
