@@ -69,9 +69,11 @@ app.post("/token", async (req, res) => {
     try {
         _base64 = req.header('Authorization').split(" ")[1];
 
-        result = _base64;
+        //result = _base64;
 
-        //if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+        if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
+
+        result = _base64;
 
         /*if (_base64 != "") {
             const _buffer = Buffer.from(_base64, 'base64').toString();
