@@ -159,7 +159,7 @@ app.patch("/getData", async (req, res) => {
             if (_token == "") { _token = req.body.authorization.split(" ")[1]; }
         } catch(e){}
 
-        console.log(req.body.authorization);
+        console.log(req.body);
         
         /*const _script = req.body.script;
 
