@@ -59,7 +59,7 @@ app.get("/dropTable", async (req, res) => {
 })
 
 app.post("/token", async (req, res) => {
-    console.log(req.headers);
+    console.log(req.options);
     //res.send(req.config);
 
 
