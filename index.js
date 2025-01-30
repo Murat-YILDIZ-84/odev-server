@@ -59,12 +59,8 @@ app.get("/dropTable", async (req, res) => {
 })
 
 app.post("/token", async (req, res) => {
-    console.log(req.body);
-    //res.send(req.config);
-
-
     //console.log(req.headers.authorization);
-    //console.log(req.headers.origin);
+    console.log(req.body.authorization.split(" ")[1]);
 
     /*var _base64 = "";
     var result = "";
@@ -80,9 +76,9 @@ app.post("/token", async (req, res) => {
             if (_base64 == "") { _base64 = req.headers.authorization.split(" ")[1]; }
         } catch(e){}
 
-        //
+        //Render.com
         try {
-            if (_base64 == "") { _base64 = req.baseUrl; }
+            if (_base64 == "") { _base64 = req.body.authorization.split(" ")[1]; }
         } catch(e){}
         
 
