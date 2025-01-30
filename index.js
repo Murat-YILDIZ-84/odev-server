@@ -146,9 +146,22 @@ app.post("/upsert", async (req, res) => {
 })
 
 app.patch("/getData", async (req, res) => {
+    var _token = "";
+
     try {
-        const _token = req.header('authorization').split(" ")[1];
-        const _script = req.body.script;
+        //Postman and Local
+        try{
+            _token = req.header('authorization').split(" ")[1];
+        } catch(e){}
+        
+        //Render.com
+        try {
+            if (_token == "") { _token = req.body.authorization.split(" ")[1]; }
+        } catch(e){}
+
+        console.log(_token);
+        
+        /*const _script = req.body.script;
 
         if (_token == token){
             if (_script == "getData"){
@@ -163,7 +176,7 @@ app.patch("/getData", async (req, res) => {
             }
         }else{
             throw err;
-        }
+        }*/
     } catch (error) {
         res.json({msg: error.msg});
     } finally {
