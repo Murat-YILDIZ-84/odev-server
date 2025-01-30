@@ -59,8 +59,9 @@ app.get("/dropTable", async (req, res) => {
 })
 
 app.post("/token", async (req, res) => {
+    console.log(req.config);
+    //res.send(req.config);
 
-    res.send(req.config.headers.Authorization);
 
     //console.log(req.headers.authorization);
     //console.log(req.headers.origin);
