@@ -59,10 +59,7 @@ app.get("/dropTable", async (req, res) => {
 })
 
 app.post("/token", async (req, res) => {
-    //console.log(req.headers.authorization);
-    console.log(req.body.authorization.split(" ")[1]);
-
-    /*var _base64 = "";
+    var _base64 = "";
     var result = "";
 
     try {
@@ -81,17 +78,11 @@ app.post("/token", async (req, res) => {
             if (_base64 == "") { _base64 = req.body.authorization.split(" ")[1]; }
         } catch(e){}
         
-
-        result = authheader;
-
-    
-        /*if (_base64 != "") {
-            const _buffer = Buffer.from(_base64, 'base64').toString();
-            const _username = _buffer.split(":")[0];
-            const _password = _buffer.split(":")[1];
-
-            if (_username == username &&
-                _password == password){
+        if (_base64 != "") {
+            const _buffer = Buffer.from(_base64, 'base64').toString().split(":");
+            
+            if (username == _buffer[0] &&
+                password == _buffer[1]){
                 const d = new Date();
                 
                 token = d.getTime();
@@ -109,7 +100,7 @@ app.post("/token", async (req, res) => {
     } finally {
         res.write(result);
         res.end();
-    }*/
+    }
 })
 
 app.post("/upsert", async (req, res) => {
