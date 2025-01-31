@@ -157,10 +157,6 @@ app.patch("/getData", async (req, res) => {
         
         //Render.com
         try {
-            if (_token == "") { _token = req.body.authorization.split(" ")[1]; }
-        } catch(e){}
-
-        try {
             if (_token == "") { _token = req.body.authorization }
         } catch(e){}
         
