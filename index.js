@@ -118,14 +118,10 @@ app.post("/upsert", async (req, res) => {
             if (_token == "") { _token = req.body.authorization }
         } catch(e){}
 
-        //console.log(_token);
-
         if (_token == token){
             const { sub0, sub1, sub2, debit } = req.body;
 
-            console.log(sub0 + " ; " + sub1 + " ; " + sub2 + " ; " + debit);
-
-            /*const checkTable = "CREATE TABLE IF NOT EXISTS DebitTable (id SERIAL PRIMARY KEY, sub0 smallserial, sub1 smallserial, sub2 smallserial, debit NUMERIC(12, 2));";
+            const checkTable = "CREATE TABLE IF NOT EXISTS DebitTable (id SERIAL PRIMARY KEY, sub0 smallserial, sub1 smallserial, sub2 smallserial, debit NUMERIC(12, 2));";
             const checkQuery = "SELECT * FROM DebitTable WHERE sub0="+ sub0 +" AND sub1="+ sub1 +" AND sub2="+ sub2;
             const updateQuery = "UPDATE DebitTable SET debit="+ debit +" WHERE sub0="+ sub0 +" AND sub1="+ sub1 +" AND sub2="+ sub2;
             const insertQuery = "INSERT INTO DebitTable (sub0, sub1, sub2, debit) VALUES ("+ sub0 +", "+ sub1 +", "+ sub2 +", "+ debit +")";
@@ -151,7 +147,7 @@ app.post("/upsert", async (req, res) => {
                 'messages': [{ 'code': '0', 'message': 'OK' }]
             });
         }else{
-            throw err;*/
+            throw err;
         }
 
         res.writeHead(200, {'Content-Type': 'application/json'});
