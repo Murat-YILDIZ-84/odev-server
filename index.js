@@ -42,7 +42,7 @@ app.get("/tables", async (req, res) => {
     try {
         const rows = (await pool.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")).rows;
 
-        res.json({msg: "OK", data: rows});
+        res.json({msg: rows});
     } catch (error) {
         res.json({msg: error.msg});
     }
@@ -52,7 +52,7 @@ app.get("/dropTable", async (req, res) => {
     try {
         const rows = (await pool.query("DROP TABLE DebitTable")).rows;
 
-        res.json({msg: "OK", data: rows});
+        res.json({msg: rows});
     } catch (error) {
         res.json({msg: error.msg});
     }
