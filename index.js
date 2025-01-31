@@ -118,12 +118,12 @@ app.post("/upsert", async (req, res) => {
             if (_token == "") { _token = req.body.authorization }
         } catch(e){}
 
-        console.log(_token);
-        
-        if (_token == token){
-            //const { sub0, sub1, sub2, debit } = req.body;
+        //console.log(_token);
 
-            //console.log(sub0 + " ; " + sub1 + " ; " + sub2 + " ; " + debit);
+        if (_token == token){
+            const { sub0, sub1, sub2, debit } = req.body;
+
+            console.log(sub0 + " ; " + sub1 + " ; " + sub2 + " ; " + debit);
 
             /*const checkTable = "CREATE TABLE IF NOT EXISTS DebitTable (id SERIAL PRIMARY KEY, sub0 smallserial, sub1 smallserial, sub2 smallserial, debit NUMERIC(12, 2));";
             const checkQuery = "SELECT * FROM DebitTable WHERE sub0="+ sub0 +" AND sub1="+ sub1 +" AND sub2="+ sub2;
