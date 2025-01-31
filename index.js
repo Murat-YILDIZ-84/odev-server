@@ -166,12 +166,10 @@ app.patch("/getData", async (req, res) => {
             if (_script == "getData"){
                 const rows = (await pool.query("SELECT * FROM DebitTable")).rows;
 
-                console.log(rows);
-
-                /*result = JSON.stringify({
+                result = JSON.stringify({
                     "response": rows,
                     "messages": [{ "code": "0", "message": "OK" }]
-                });*/
+                });
             } else {
                 throw err;
             }
