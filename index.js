@@ -35,7 +35,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-20-7");
+    res.send("Hello World");
 })
 
 app.get("/tables", async (req, res) => {
