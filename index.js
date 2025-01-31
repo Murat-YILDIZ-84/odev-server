@@ -35,7 +35,7 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World-20-6");
+    res.send("Hello World-20-7");
 })
 
 app.get("/tables", async (req, res) => {
@@ -96,7 +96,7 @@ app.post("/token", async (req, res) => {
 
         res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
-        res.writeHead(500, 'Error has occured');
+        res.writeHead(400, 'Error has occured');
     } finally {
         res.write(result);
         res.end();
@@ -147,6 +147,7 @@ app.post("/upsert", async (req, res) => {
 
 app.patch("/getData", async (req, res) => {
     var _token = "";
+    var result = "";
 
     try {
         //Postman and Local
@@ -159,28 +160,36 @@ app.patch("/getData", async (req, res) => {
             if (_token == "") { _token = req.body.authorization.split(" ")[1]; }
         } catch(e){}
 
-        console.log(req.body.authorization);
+        try {
+            if (_token == "") { _token = req.body.authorization }
+        } catch(e){}
         
-        /*const _script = req.body.script;
+        const _script = req.body.script;
 
         if (_token == token){
             if (_script == "getData"){
                 const rows = (await pool.query("SELECT * FROM DebitTable")).rows;
 
-                res.json({
+                console.log(rows);
+
+                /*result = JSON.stringify({
                     "response": rows,
                     "messages": [{ "code": "0", "message": "OK" }]
-                });
+                });*/
             } else {
                 throw err;
             }
         }else{
             throw err;
-        }*/
+        }
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
-        res.json({msg: error.msg});
+        res.writeHead(400, 'Error has occured');
     } finally {
         token = 0;
+        res.write(result);
+        res.end();
     }
 })
 
