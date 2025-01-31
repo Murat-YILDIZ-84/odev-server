@@ -104,13 +104,26 @@ app.post("/token", async (req, res) => {
 })
 
 app.post("/upsert", async (req, res) => {
+    var _token = "";
+    var result = "";
+
     try {
-        const _token = req.header('authorization').split(" ")[1];
+        //Postman and Local
+        try{
+            _token = req.header('authorization').split(" ")[1];
+        } catch(e){}
+        
+        //Render.com
+        try {
+            if (_token == "") { _token = req.body.authorization }
+        } catch(e){}
 
         if (_token == token){
             const { sub0, sub1, sub2, debit } = req.body;
 
-            const checkTable = "CREATE TABLE IF NOT EXISTS DebitTable (id SERIAL PRIMARY KEY, sub0 smallserial, sub1 smallserial, sub2 smallserial, debit NUMERIC(12, 2));";
+            console.log(sub0 + " ; " + sub1 + " ; " + sub2 + " ; " + debit);
+
+            /*const checkTable = "CREATE TABLE IF NOT EXISTS DebitTable (id SERIAL PRIMARY KEY, sub0 smallserial, sub1 smallserial, sub2 smallserial, debit NUMERIC(12, 2));";
             const checkQuery = "SELECT * FROM DebitTable WHERE sub0="+ sub0 +" AND sub1="+ sub1 +" AND sub2="+ sub2;
             const updateQuery = "UPDATE DebitTable SET debit="+ debit +" WHERE sub0="+ sub0 +" AND sub1="+ sub1 +" AND sub2="+ sub2;
             const insertQuery = "INSERT INTO DebitTable (sub0, sub1, sub2, debit) VALUES ("+ sub0 +", "+ sub1 +", "+ sub2 +", "+ debit +")";
@@ -131,21 +144,25 @@ app.post("/upsert", async (req, res) => {
             await pool.query(ifQuery);
             await pool.query('COMMIT');
 
-            res.json({
-                "response": { "script": "upsert" },
-                "messages": [{ "code": "0", "message": "OK" }]
+            result = JSON.stringify({
+                'response': { 'script': 'upsert' },
+                'messages': [{ 'code': '0', 'message': 'OK' }]
             });
         }else{
-            throw err;
+            throw err;*/
         }
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
     } catch (error) {
-        res.json({msg: error.msg});
+        res.writeHead(400, 'Error has occured');
     } finally {
         token = 0;
+        res.write(result);
+        res.end();
     }
 })
 
-app.patch("/getData", async (req, res) => {
+app.patch('/getData', async (req, res) => {
     var _token = "";
     var result = "";
 
@@ -187,4 +204,4 @@ app.patch("/getData", async (req, res) => {
     }
 })
 
-app.listen(5000, () => console.log("Server is running on port 5000"));
+app.listen(5000, () => console.log('Server is running on port 5000'));
