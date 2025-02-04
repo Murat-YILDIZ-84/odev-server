@@ -39,7 +39,11 @@ app.get("/test", (req, res) => {
     res.end();*/
 
     res.writeHead(200, {'Content-Type': 'text/json'});
-    res.write("Hello World");
+    //res.write("Hello World");
+    res.json(JSON.stringify({
+        'response': 'test',
+        'messages': [{ 'code': '0', 'message': 'OK' }]
+    }))
     res.end();
 })
 
