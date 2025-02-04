@@ -35,7 +35,13 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.send("Hello World");
+    /*res.send("Hello World");
+    res.end();*/
+
+    res.writeHead(200, {
+    'Content-Type': 'text/json'
+    });
+    res.write(JSON.stringify(people));
     res.end();
 })
 
