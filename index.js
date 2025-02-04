@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-import express, { urlencoded, json } from "express";
-import cors from 'cors';
+const express = require("express");
+const cors = require('cors');
 const app = express();
-import { Pool } from 'pg';
+const { Pool } = require('pg');
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
     ssl: {
@@ -15,8 +15,8 @@ const username = "apitest";
 const password = "test123";
 var token = 0;
 
-app.use(urlencoded({ extended: true }));
-app.use(json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
