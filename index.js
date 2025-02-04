@@ -35,10 +35,13 @@ pool.connect((err) => {
 })
 
 app.get("/test", (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/json'});
+    /*res.writeHead(200, {'Content-Type': 'text/json'});
     //res.send("Hello World");
     res.write("Hello World");
-    res.end();
+    res.end();*/
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send('Hello World');
 })
 
 app.get("/tables", async (req, res) => {
